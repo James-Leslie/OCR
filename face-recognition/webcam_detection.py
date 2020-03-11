@@ -23,11 +23,11 @@ LE = 'output/le.pkl'                            # path to label encoder
 
 
 # load our serialized face detector from disk
-print("Loading face detector...")
-protoPath = os.path.sep.join([DETECTOR, "deploy.prototxt"])
-modelPath = os.path.sep.join([DETECTOR,
-    "res10_300x300_ssd_iter_140000.caffemodel"])
-detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
+detector = cv2.dnn.readNetFromCaffe(
+    prototxt=DETECTOR+'deploy.prototxt',
+    caffeModel=DETECTOR+'res10_300x300_ssd_iter_140000.caffemodel'
+)
+detector.setPreferableTarget(cv2.dnn.DNN_TARGET_MYRIAD)
 
 # load our serialized face embedding model from disk
 print("Loading face recognizer...")
