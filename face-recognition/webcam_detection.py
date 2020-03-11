@@ -13,13 +13,13 @@ import time
 
 
 # globals
-DATASET = 'dataset'                             # path to input directory of faces + images
-EMBEDDINGS = 'output/embeddings.pkl'            # path to serialized db of facial embeddings
-DETECTOR = 'face_detection_model/'              # path to OpenCV's deep learning face detector
-EMBEDDING_MODEL = 'openface_nn4.small2.v1.t7'   # path to OpenCV's deep learning face embedding model
-CONFIDENCE = .5                                 # minimum probability to filter weak detections
-RECOGNIZER = 'output/recognizer.pkl'            # path to model trained to recognize faces
-LE = 'output/le.pkl'                            # path to label encoder
+DATASET = 'dataset'                    # path to input directory of faces + images
+EMBEDDINGS = 'output/embeddings.pkl'   # path to serialized db of facial embeddings
+DETECTOR = 'face_detection_model/'     # path to OpenCV's deep learning face detector
+EMBEDDING_MODEL = 'embedding_model/'   # path to OpenCV's deep learning face embedding model
+CONFIDENCE = .5                        # minimum probability to filter weak detections
+RECOGNIZER = 'output/recognizer.pkl'   # path to model trained to recognize faces
+LE = 'output/le.pkl'                   # path to label encoder
 
 
 # load our serialized face detector from disk
@@ -27,11 +27,10 @@ detector = cv2.dnn.readNetFromCaffe(
     prototxt=DETECTOR+'deploy.prototxt',
     caffeModel=DETECTOR+'res10_300x300_ssd_iter_140000.caffemodel'
 )
-detector.setPreferableTarget(cv2.dnn.DNN_TARGET_MYRIAD)
 
 # load our serialized face embedding model from disk
 print("Loading face recognizer...")
-embedder = cv2.dnn.readNetFromTorch(EMBEDDING_MODEL)
+embedder = cv2.dnn.readNetFromTorch(EMBEDDING_MODEL+'openface_nn4.small2.v1.t7')
 
 # load the actual face recognition model along with the label encoder
 recognizer = pickle.loads(open(RECOGNIZER, "rb").read())
