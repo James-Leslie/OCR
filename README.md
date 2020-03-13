@@ -7,4 +7,5 @@ Feel free to clone this repository and make a pull request with instructions for
 [PyPi link](https://pypi.org/project/opencv-python/)
 ```python
 pip install opencv-python
+pip install imutils
 ```
