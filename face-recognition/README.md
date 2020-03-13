@@ -19,3 +19,26 @@ pip install opencv-python
 ```python
 pip install imutils
 ```
+
+### 3. Collect images of faces
+  1. Create one folder per person we want to be able to recognize.
+  2. Add all available images of each person's face to their folder. Make sure there is just one face per image.
+  3. Create an "unknown" folder with some images of random people. Make sure there is decent variety in these images.
+
+Folder structure should be as follows (Use the `dataset` subdirectory as an example):
+```
+dataset
+  person1
+    1.jpg
+    2.jpg
+    ...
+  person2
+    1.jpg
+    2.jpg
+    ...
+  ...
+  unknown
+    1.jpg
+    2.jpg
+    ...
+```
